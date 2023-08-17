@@ -31,6 +31,7 @@
   ],
   "scripts": {
     "lint": "yarn workspace next-landing run lint",
+    "export": "next export",
     "generate-zip": " ./scripts/generate-zip.sh",
     "setup-EBConfig": "./scripts/setupAWSCircleCI.sh",
     "clean": "lerna clean --yes && rimraf node_modules",
