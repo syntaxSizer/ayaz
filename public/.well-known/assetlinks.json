@@ -1,0 +1,27 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ayazona.eat.android",
+      "sha256_cert_fingerprints":
+      ["11:50:95:7E:17:54:91:99:C7:A1:13:AD:FE:AF:79:54:AE:D9:5B:2F:7D:9F:CD:49:5C:DE:1B:3A:4D:43:C3:00"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ayazona.eat.android.rider",
+      "sha256_cert_fingerprints":
+      ["94:55:C1:43:E7:5E:C6:A5:C6:60:A5:27:11:8F:9E:8D:14:19:1A:5D:23:DE:E0:C0:85:D5:B3:F2:CB:72:13:88"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ayazona.merchant",
+      "sha256_cert_fingerprints":
+      ["FA:5B:60:20:BB:79:17:B8:59:F6:EA:60:C4:81:60:30:4B:A8:D4:5F:88:3E:77:24:BD:99:7E:D0:DB:5C:AC:B7"]
+    }
+  }]

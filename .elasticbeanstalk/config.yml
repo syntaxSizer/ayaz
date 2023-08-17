@@ -1,0 +1,40 @@
+branch-defaults:
+  aws-changes:
+    environment: prod
+  aws-infra:
+    environment: staging
+  bug/shopping-cart:
+    environment: latest
+  bugs/shopping-cart:
+    environment: latest
+  deployment:
+    environment: ayazona-react-next-dev
+  fix/aws-production-version-bugs:
+    environment: prod
+    group_suffix: null
+  production:
+    environment: staging-env-5
+    group_suffix: null
+deploy:
+  artifact: ayazona.zip
+environment-defaults:
+  ayazona:
+    branch: null
+    repository: null
+  prod:
+    branch: null
+    repository: null
+global:
+  application_name: ayazona-react-next
+  branch: null
+  default_ec2_keyname: aws-eb
+  default_platform: Node.js 10 running on 64bit Amazon Linux 2
+  default_region: eu-central-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli2
+  repository: null
+  sc: git
+  workspace_type: Application

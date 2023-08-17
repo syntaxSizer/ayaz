@@ -1,0 +1,159 @@
+version: 2.1
+# orbs:
+#   slack: circleci/slack@4.1.4
+jobs:
+  test:
+    docker:
+      -
+        image: 'circleci/node:14'
+    working_directory: ~/ayazona
+
+    steps:
+      - checkout
+      -
+        restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      -
+        run: 'yarn'
+      -
+        save_cache:
+          name: Save Yarn Package Cache
+          key: 'yarn-packages-{{ checksum "yarn.lock" }}'
+          paths:
+            - ~/.cache/yarn
+      -
+        run: 'yarn test --coverage'
+  build:
+    working_directory: ~/ayazona
+    docker:
+      -
+        image: 'circleci/node:14'
+    steps:
+      - checkout
+      -
+        restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      -
+        run: 'yarn'
+      -
+        save_cache:
+          name: Save Yarn Package Cache
+          key: 'yarn-packages-{{ checksum "yarn.lock" }}'
+          paths:
+            - ~/.cache/yarn
+      -
+        run: 'sudo npm i -g rimraf'
+      -
+        run:
+          name: 'Run Tests'
+          command: |
+            yarn test --coverage
+
+      -
+        run:
+          name: 'Build Application'
+          command: |
+            yarn landing-build
+  deploy:
+    working_directory: ~/ayazona
+    docker:
+      - image: 'circleci/node:14'
+    steps:
+      - checkout
+      -
+        restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      -
+        run: 'yarn'
+      -
+        run: 'sudo npm i -g rimraf'
+      -
+        run:
+          name: 'Build Application'
+          command: |
+            yarn landing-build
+      -
+        run:
+          name: 'Zip Application Build'
+          command: |
+            yarn run generate-zip
+      -
+        run:
+          name: 'Install Pip'
+          command: |
+            sudo apt update
+            sudo apt install -y python3-pip python3-dev
+      -
+        run:
+          name: 'Install deployment dependencies'
+          command: |
+            sudo pip3 install awsebcli==3.20.0
+      -
+        run:
+          name: 'Deploy to Elastic Beanstalk'
+          command: |
+            mkdir ~/.aws
+            touch ~/.aws/config
+            chmod 600 ~/.aws/config
+            echo "[profile eb-cli]" > ~/.aws/config
+            echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
+            echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+            eb init --platform 'arn:aws:elasticbeanstalk:eu-central-1::platform/Node.js 12 running on 64bit Amazon Linux 2/5.4.2' --region 'eu-central-1' 'ayazona-react-next'
+            eb use staging-env-5 --profile eb-cli
+            eb deploy -v --staged --profile eb-cli
+      # -
+      #   slack/notify:
+      #     event: fail
+      #     template: basic_fail_1
+      #     mentions: "@engineers"
+workflows:
+  version: 2
+  Test_and_Deploy:
+    jobs:
+      # - build
+      # - slack/on-hold:
+      #     context:
+      #       - slack-secrets
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only: production
+      #       tags:
+      #         only: /^v.*/
+              # Jobs with the type of "approval" act as place holders to pause the workflow, the job name does not matter.
+              # Wait for both the test job and for the notification to send before pausing.
+      # - approve_deployment:
+      #     type: approval
+      #     requires:
+      #       - test
+      #       - slack/on-hold
+      #     filters:
+      #       branches:
+      #         only: production
+      #       tags:
+      #         only: /^v.*/
+      #         # The deploy job will continue once the workflow has been manually approved.
+      # -
+      #   test:
+      #     requires:
+      #       - build
+      -
+        deploy:
+          # context:
+          #   - slack-secrets
+          # requires:
+          #   - test
+          filters:
+            branches:
+              only: production
+          # post-steps:
+          #   - slack/notify:
+          #     event: pass
+          #     template: basic_success_1

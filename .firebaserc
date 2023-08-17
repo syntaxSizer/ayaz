@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "aise-deff2"
+  },
+  "targets": {
+    "aise-deff2": {
+      "hosting": {
+        "ay": [
+          "aise-deff2"
+        ]
+      }
+    }
+  }
+}

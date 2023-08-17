@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "packages/common",
+    "packages/landing"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}

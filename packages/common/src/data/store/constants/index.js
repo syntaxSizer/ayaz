@@ -1,0 +1,26 @@
+//Action Types
+
+/* auth */
+export const AUTHENTICATE = 'AUTHENTICATE';
+export const SET_USER_LOCATION = 'SET_USER_LOCATION';
+export const DEAUTHENTICATE = 'DEAUTHENTICATE';
+export const RESTORE_AUTH_STATE  = "RESTORE_AUTH_STATE";
+export const AUTH_ERROR  = "AUTH_ERROR";
+
+/* cart */
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART";
+export const FETCH_SESSION_CART = "FETCH_SESSION_CART";
+export const BULK_INSERT = "BULK_INSERT";
+export const TOGGLE_CART = "TOGGLE_CART";
+
+/* common */
+export const SET_LOADER  = "SET_LOADER";
+export const LOCATION_ADDED = "LOCATION_ADDED";
+export const TOGGLE_MAP_VIEW = "TOGGLE_MAP_VIEW";
+export const SET_PAGE_PARAMS  = "SET_PAGE_PARAMS";
+export const REMOVE_PAGE_PARAMS  = "REMOVE_PAGE_PARAMS";
+export const TOGGLE_LOCATION_PICKER = "TOGGLE_LOCATION_PICKER";
+export const TOGGLE_MODAL_VIEW = "TOGGLE_MODAL_VIEW";
+export const SET_FAVOURITE_ITEMS = "SET_FAVOURITE_ITEMS";

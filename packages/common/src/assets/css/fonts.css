@@ -1,0 +1,40 @@
+@font-face {
+  font-family: Ayazona;
+  src: url('../fonts/Ayazona-Regular.eot');
+  src: url('../fonts/Ayazona-Regular.eot#iefix') format('embedded-opentype'),
+    url('../fonts/Ayazona-Regular.woff2') format('woff2'),
+    url('../fonts/Ayazona-Regular.woff') format('woff'),
+    url('../fonts/Ayazona-Regular.ttf') format('truetype');
+  font-display: block;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ayazona;
+  src: url('../fonts/Ayazona-Medium.eot');
+  src: url('../fonts/Ayazona-Medium.eot#iefix') format('embedded-opentype'),
+    url('../fonts/Ayazona-Medium.woff2') format('woff2'),
+    url('../fonts/Ayazona-Medium.woff') format('woff'),
+    url('../fonts/Ayazona-Medium.ttf') format('truetype');
+  font-display: block;
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Ayazona;
+  src: url('../fonts/Ayazona-Bold.eot');
+  src: url('../fonts/Ayazona-Bold.eot#iefix') format('embedded-opentype'),
+    url('../fonts/Ayazona-Bold.woff2') format('woff2'),
+    url('../fonts/Ayazona-Bold.woff') format('woff'),
+    url('../fonts/Ayazona-Bold.ttf') format('truetype');
+  font-display: block;
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: BigHearted;
+  src: url('../fonts/BigHearted-Bold.woff2') format('woff2');
+  font-display: block;
+  font-weight: 800;
+  font-style: normal;
+}
